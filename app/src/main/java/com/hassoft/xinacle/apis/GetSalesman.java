@@ -18,7 +18,7 @@ public class GetSalesman {
 
         try {
 
-            String getUrl = context.getResources().getString(R.string.apilinkprefix)+"Configuration/GetSalesmans?"+CompanyBranchID;//https://www.pakistanscrabble.org/api.php";
+            String getUrl = context.getResources().getString(R.string.apilinkprefix)+"Configuration/GetSalesmans?CompanyBranchID="+CompanyBranchID;//https://www.pakistanscrabble.org/api.php";
             Log.v("SOMEONE ONCE SAID", "postURL: " + getUrl);
 
             HttpClient httpClient = new DefaultHttpClient();

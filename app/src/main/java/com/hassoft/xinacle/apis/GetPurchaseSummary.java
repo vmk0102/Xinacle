@@ -14,11 +14,11 @@ import org.apache.http.util.EntityUtils;
 
 public class GetPurchaseSummary {
 
-    public String getData(Context context, String fromDate, String toDate, int SupplierID, int CompanyBranchID) {
+    public String getData(Context context, String fromDate, String toDate, String SupplierID, String CompanyBranchID) {
 
         try {
 
-            String getUrl = context.getResources().getString(R.string.apilinkprefix)+"Purchases/GetPurchaseMaster?FromDate="+fromDate+"&ToDate="+toDate+"&SupplierID="+SupplierID+"&CompanyBranchID="+CompanyBranchID+";//https://www.pakistanscrabble.org/api.php";
+            String getUrl = context.getResources().getString(R.string.apilinkprefix)+"Purchases/GetPurchaseMaster?FromDate="+fromDate+"&ToDate="+toDate+"&SupplierID="+SupplierID+"&CompanyBranchID="+CompanyBranchID;//https://www.pakistanscrabble.org/api.php";
             Log.v("SOMEONE ONCE SAID", "postURL: " + getUrl);
 
             HttpClient httpClient = new DefaultHttpClient();

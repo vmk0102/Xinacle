@@ -2,7 +2,6 @@ package com.hassoft.xinacle.apis;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.hassoft.xinacle.R;
 
@@ -12,22 +11,17 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
 
-public class GetSalesTransaction {
+public class GetSupplier {
 
-    public String getData(Context context,String fromDate, String toDate, String CustomerID,String ProductID, int CompanyBranchID) {
+    public String getData(Context context,String CompanyBranchID) {
 
         try {
 
-            String getUrl = context.getResources().getString(R.string.apilinkprefix)+"Sales/GetSalesTransaction?FromDate="+fromDate+"&ToDate="+toDate+"&CustomerID="+CustomerID+"&ProductID="+ProductID+"&CompanyBranchID="+CompanyBranchID;//https://www.pakistanscrabble.org/api.php";
+            String getUrl = context.getResources().getString(R.string.apilinkprefix)+"Configuration/GetSuppliers?CompanyBranchID="+CompanyBranchID;//https://www.pakistanscrabble.org/api.php";
             Log.v("SOMEONE ONCE SAID", "postURL: " + getUrl);
-
             HttpClient httpClient = new DefaultHttpClient();
-
             HttpGet httpGet = new HttpGet(getUrl);
-
-
             HttpResponse response = httpClient.execute(httpGet);
             HttpEntity resEntity = response.getEntity();
 

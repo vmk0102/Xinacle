@@ -1,6 +1,7 @@
 package com.hassoft.xinacle.activities;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ TextView fromdate;
 TextView todate;
 ListView salesTransactionList;
 TextView totalNetSales;
+Button ShowChart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +36,7 @@ TextView totalNetSales;
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final String s = new GetSalesTransaction().getData(SalesTransactionActivity.this,getIntent().getStringExtra("FromDate"),getIntent().getStringExtra("ToDate"),1,1);
+                final String s = new GetSalesTransaction().getData(SalesTransactionActivity.this,getIntent().getStringExtra("FromDate"),getIntent().getStringExtra("ToDate"),getIntent().getStringExtra("CustomerID"),getIntent().getStringExtra("ProductID"),1);
 
                 runOnUiThread(new Runnable() {
                     @Override

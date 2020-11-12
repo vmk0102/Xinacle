@@ -14,7 +14,7 @@ import org.apache.http.util.EntityUtils;
 
 public class GetProducts {
 
-    public String getData(Context context,int CompanyBranchID) {
+    public String getData(Context context,String CompanyBranchID) {
 
         try {
 

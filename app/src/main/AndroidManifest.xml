@@ -17,7 +17,7 @@
 
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
         <activity
-            android:name=".activities.ActivityLogin"
+            android:name=".activities.Splash"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -26,6 +26,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.ActivityLogin" />
         <activity
             android:name=".activities.MainActivity" />
         <activity
@@ -40,11 +42,33 @@
         android:name=".activities.SalesTransactionActivity"
             android:screenOrientation="landscape" />
         <activity
+        android:name=".activities.FilterSalesTransactionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.FilterDailySales"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.DailySalesChart"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activities.SalesTransactionChart"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activities.SalesSummaryActivity"
             android:screenOrientation="landscape" />
         <activity
             android:name=".activities.FilterSalesMasterActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.FilterPurchaseMasterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.purchaseSummaryActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activities.SalesSummaryChart"
+            android:screenOrientation="landscape" />
+
 
 
 

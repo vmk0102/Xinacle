@@ -16,16 +16,24 @@ import com.hassoft.xinacle.adapter.optionsAdapter;
 
 public class MainActivity extends Activity {
 
-    LinearLayout configBox;
+    LinearLayout salesBox;
+    LinearLayout purchaseBox;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        configBox=(LinearLayout)findViewById(R.id.salesBox);
-        configBox.setOnClickListener(new View.OnClickListener() {
+        salesBox=(LinearLayout)findViewById(R.id.salesBox);
+        purchaseBox=(LinearLayout)findViewById(R.id.purchaseBox);
+        salesBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,FilterSalesMasterActivity.class));
+                startActivity(new Intent(MainActivity.this,SalesActivity.class));
+            }
+        });
+        purchaseBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,PurchaseActivity.class));
             }
         });
       /*  lv=(GridView)findViewById(R.id.GridViewOptions);

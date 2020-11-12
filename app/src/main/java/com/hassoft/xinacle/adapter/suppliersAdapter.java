@@ -11,23 +11,22 @@ import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.hassoft.xinacle.R;
-import com.hassoft.xinacle.model.Customers;
 import com.hassoft.xinacle.model.Salesman;
+import com.hassoft.xinacle.model.Supplier;
 
 import java.util.ArrayList;
 
 
-public class salesmanAdapter extends BaseAdapter implements Filterable {
+public class suppliersAdapter extends BaseAdapter implements Filterable {
     Context context;
-    ArrayList<Salesman> salesmen=null;
-    salesmanFilter salesmanFilter = new salesmanFilter();
-    ArrayList<Salesman> backupSalesman=null;
+    ArrayList<Supplier> suppliers=null;
+    ArrayList<Supplier> BackupSupplier=null;
+    supplierFilter supplierFilter=new supplierFilter();
 
-
-    public salesmanAdapter(Context context, ArrayList<Salesman> salesmen){
+    public suppliersAdapter(Context context, ArrayList<Supplier> suppliers){
         this.context=context;
-        this.salesmen=salesmen;
-        backupSalesman=salesmen;
+        this.suppliers=suppliers;
+        BackupSupplier=suppliers;
 
     }
    // int pos=0;
@@ -35,12 +34,12 @@ public class salesmanAdapter extends BaseAdapter implements Filterable {
 
     @Override
     public Object getItem(int i) {
-        return salesmen.get(i);
+        return suppliers.get(i);
     }
 
     @Override
     public int getCount() {
-        return salesmen.size();
+        return suppliers.size();
     }
 
     @Override
@@ -50,12 +49,12 @@ public class salesmanAdapter extends BaseAdapter implements Filterable {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         if(view==null){
-            view= LayoutInflater.from(context).inflate(R.layout.spinnersalemansngle,viewGroup,false);
+            view= LayoutInflater.from(context).inflate(R.layout.spinnersupplier,viewGroup,false);
         }
 
-        final Salesman salesman = (Salesman) getItem(i);
+        final Supplier supplier = (Supplier) getItem(i);
         TextView optionName = (TextView) view.findViewById(R.id.itemCustomerName);
-        optionName.setText(salesman.getSalesmanName());
+        optionName.setText(supplier.getSupplierName());
         /*optionName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,23 +70,22 @@ public class salesmanAdapter extends BaseAdapter implements Filterable {
 
     @Override
     public Filter getFilter() {
-        return salesmanFilter;
+        return supplierFilter;
     }
-
-    public class salesmanFilter extends Filter {
+    public class supplierFilter extends Filter {
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             final FilterResults filterResults = new FilterResults();
             if (TextUtils.isEmpty(constraint)) {
-                filterResults.count = backupSalesman.size();
-                filterResults.values = backupSalesman;
+                filterResults.count = BackupSupplier.size();
+                filterResults.values = BackupSupplier;
                 return filterResults;
             }
-            final ArrayList<Salesman> filterPersons = new ArrayList<>();
-            for (Salesman salesman : backupSalesman) {
-                if (salesman.getSalesmanName().toLowerCase().contains(constraint)) {
-                    filterPersons.add(salesman);
+            final ArrayList<Supplier> filterPersons = new ArrayList<>();
+            for (Supplier supplier : BackupSupplier) {
+                if (supplier.getSupplierName().toLowerCase().contains(constraint)) {
+                    filterPersons.add(supplier);
                 }
             }
             filterResults.count = filterPersons.size();
@@ -97,10 +95,8 @@ public class salesmanAdapter extends BaseAdapter implements Filterable {
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            salesmen = (ArrayList<Salesman>) results.values;
+            suppliers = (ArrayList<Supplier>) results.values;
             notifyDataSetChanged();
         }
     }
 }
-
-

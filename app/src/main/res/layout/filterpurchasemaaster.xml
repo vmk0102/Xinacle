@@ -70,44 +70,25 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-            <TextView
-                android:textSize="12sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Customer"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textColor="@color/hassoftblue"
-                 />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Supplier"
+        android:textColor="@color/hassoftblue"
+        android:textSize="12sp" />
             <com.androidtrip.plugins.searchablespinner.SearchableSpinner
-                android:id="@+id/listcustomer"
+                android:id="@+id/listsupplier"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                app:SearchHintText="Search Customer"
                 app:RevealEmptyText="Touch to select"
-                app:NoItemsFoundText="No Customers Found"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:textSize="12sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Saleman"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textColor="@color/hassoftblue"
-                 />
-            <com.androidtrip.plugins.searchablespinner.SearchableSpinner
-                android:id="@+id/listsaleman"
-                android:layout_marginTop="5dp"
-                app:SearchHintText="Search Saleman"
-                app:NoItemsFoundText="No Salemen Found"
-                app:RevealEmptyText="Touch to select"
+                app:SearchHintText="Search Supplier"
+                app:NoItemsFoundText="No saleman found"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
     <Button
         android:id="@+id/submitFilter"
         android:layout_marginTop="20dp"
