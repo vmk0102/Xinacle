@@ -12,13 +12,13 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
-public class GetPurchaseTransaction {
+public class GetTopProductSales {
 
-    public String getData(Context context,String fromDate, String toDate, String SupplierID, String ProductID,String CompanyBranchID) {
+    public String getData(Context context,String CompanyBranchID) {
 
         try {
 
-            String getUrl = context.getResources().getString(R.string.apilinkprefix)+"Purchases/GetPurchaseTransaction?FromDate="+fromDate+"&ToDate="+toDate+"&SupplierID="+SupplierID+"&ProductID="+ProductID+"&CompanyBranchID="+CompanyBranchID;//https://www.pakistanscrabble.org/api.php";
+            String getUrl = context.getResources().getString(R.string.apilinkprefix)+"Configuration/GetSalesmans?CompanyBranchID="+CompanyBranchID;//https://www.pakistanscrabble.org/api.php";
             Log.v("SOMEONE ONCE SAID", "postURL: " + getUrl);
 
             HttpClient httpClient = new DefaultHttpClient();

@@ -17,7 +17,7 @@ public class GetDailySales {
 
         try {
 
-            String getUrl = context.getResources().getString(R.string.apilinkprefix)+"Sales/GetDailySales?FromDate="+fromDate+"&ToDate="+toDate+"&CompanyBranchID="+CompanyBranchID;//https://www.pakistanscrabble.org/api.php";
+            String getUrl = context.getResources().getString(R.string.apilinkprefix)+"Sales/GetDailySales?FromDate=&ToDate=&CompanyBranchID="+CompanyBranchID;//https://www.pakistanscrabble.org/api.php";
             Log.v("SOMEONE ONCE SAID", "postURL: " + getUrl);
 
             HttpClient httpClient = new DefaultHttpClient();

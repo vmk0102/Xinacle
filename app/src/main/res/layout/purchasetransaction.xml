@@ -3,6 +3,10 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
     <RelativeLayout
 
         android:layout_width="match_parent"
@@ -11,6 +15,7 @@
         android:background="@color/hassoftblue"
         android:id="@+id/headings"
         android:gravity="center"
+
         android:orientation="horizontal"
         android:layout_width="match_parent"
 
@@ -22,7 +27,7 @@
             android:layout_marginLeft="10dp"
 
             android:textColor="@color/white"
-            android:text="Sales Summary"
+            android:text="Purchase Transaction"
 
             />
         <LinearLayout
@@ -31,6 +36,7 @@
             android:layout_below="@id/headings"
             android:gravity="end"
             android:layout_gravity="end"
+
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -60,37 +66,17 @@
         </LinearLayout>
 
 
-    </LinearLayout>
-        <LinearLayout
-            android:layout_below="@id/headings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:id="@+id/btnchart"
-            >
-            <Button
-                android:id="@+id/showGraph"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
 
-                android:background="@drawable/button_round"
-                android:textColor="@color/hassoftblue"
-                android:text="View Chart"
-                android:layout_below="@id/TotalNetAmount"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                />
-        </LinearLayout>
+    </LinearLayout>
+
 
         <HorizontalScrollView
+
             android:id="@+id/contentData"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
-            android:layout_marginBottom="50dp"
-            android:layout_below="@id/btnchart"
-
-            android:layout_marginTop="2dp">
+            android:layout_below="@id/headings"
+            android:layout_marginTop="7dp">
 
             <LinearLayout
 
@@ -105,15 +91,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp">
 
                     <TextView
                         android:id="@+id/txtSalesNo"
-                        android:layout_width="50dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Sales No."
+                        android:text="Purchase No."
                         android:textAlignment="viewStart"
                         android:textColor="@color/black"
                         android:textSize="13dp" />
@@ -130,7 +115,7 @@
                         android:textSize="13dp" />
 
                     <TextView
-                        android:id="@+id/txtCustomerName"
+                        android:id="@+id/txtSupplierName"
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -248,5 +233,6 @@
             />
 
     </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

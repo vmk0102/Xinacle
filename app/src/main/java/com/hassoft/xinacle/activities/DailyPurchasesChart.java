@@ -18,16 +18,10 @@ import com.google.gson.Gson;
 import com.hassoft.xinacle.R;
 import com.hassoft.xinacle.apis.GetDailySales;
 import com.hassoft.xinacle.model.DailySales;
-import com.hassoft.xinacle.model.PurchaseMaster;
-import com.hassoft.xinacle.model.SalesSummary;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
-public class DailySalesChart extends AppCompatActivity {
+public class DailyPurchasesChart extends AppCompatActivity {
     LineChart mChart;
     DailySales[] sa;
 
@@ -40,13 +34,13 @@ public class DailySalesChart extends AppCompatActivity {
 
         mChart.setPinchZoom(true);
         mChart.animateXY(3000,3000);
-        ProgressDialog pd = new ProgressDialog(DailySalesChart.this);
+        ProgressDialog pd = new ProgressDialog(DailyPurchasesChart.this);
         pd.setMessage("Loading please wait");
         pd.show();
         new Thread(new Runnable() {
             @Override
             public void run() {
-              String  ds=new GetDailySales().getData(DailySalesChart.this,getIntent().getStringExtra("FromDate"),getIntent().getStringExtra("ToDate"),1);
+              String  ds=new GetDailySales().getData(DailyPurchasesChart.this,getIntent().getStringExtra("FromDate"),getIntent().getStringExtra("ToDate"),1);
               runOnUiThread(new Runnable() {
                   @Override
                   public void run() {
@@ -55,7 +49,7 @@ public class DailySalesChart extends AppCompatActivity {
                       sa = gson.fromJson(ds,DailySales[].class);
                       
                       ArrayList<ILineDataSet> set1=new ArrayList<>();
-                      LineDataSet dataset1 = new LineDataSet(dataSet1(sa),"Daily Sales");
+                      LineDataSet dataset1 = new LineDataSet(dataSet1(sa),"Daily Purchases");
                       prepareData(dataset1,Color.BLUE);
                       ArrayList<String> dates= new ArrayList<>();
                       fillData(dates,sa);

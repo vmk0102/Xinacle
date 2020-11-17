@@ -63,10 +63,25 @@
             android:name=".activities.FilterPurchaseMasterActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activities.FilterPurchaseTransactionActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activities.purchaseSummaryActivity"
             android:screenOrientation="landscape" />
         <activity
             android:name=".activities.SalesSummaryChart"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activities.purchaseTransactionActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activities.FilterDailyPurchases"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activities.DailyPurchasesChart"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activities.FilterPur"
             android:screenOrientation="landscape" />
 
 

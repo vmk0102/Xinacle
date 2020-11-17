@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.androidtrip.plugins.searchablespinner.SearchableSpinner;
+import com.androidtrip.plugins.searchablespinner.interfaces.OnItemSelectedListener;
 import com.google.gson.Gson;
 import com.hassoft.xinacle.R;
 import com.hassoft.xinacle.adapter.customerAdapter;
@@ -35,7 +37,7 @@ import java.util.Calendar;
 public class FilterPurchaseMasterActivity extends AppCompatActivity {
     TextView fromDate;
     TextView toDate;
-    Spinner SupplierSpinner;
+    SearchableSpinner SupplierSpinner;
     Button SubmitButton;
     String SupplierID="";
     SimpleDateFormat sdf;
@@ -48,7 +50,7 @@ public class FilterPurchaseMasterActivity extends AppCompatActivity {
         sdf=new SimpleDateFormat("yyyy-MM-dd");
         fromDate=(TextView)findViewById(R.id.fromDate);
         toDate=(TextView)findViewById(R.id.toDate);
-        SupplierSpinner=(Spinner)findViewById(R.id.listsupplier);
+        SupplierSpinner=(SearchableSpinner) findViewById(R.id.listsupplier);
 
         SubmitButton=(Button)findViewById(R.id.submitFilter);
         final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -122,17 +124,17 @@ public class FilterPurchaseMasterActivity extends AppCompatActivity {
 
                             suppliersAdapter sa  = new suppliersAdapter(FilterPurchaseMasterActivity.this,withNullSupplier);
                             SupplierSpinner.setAdapter(sa);
-                            SupplierSpinner.setSelection(withNullSupplier.size()-1);
-                            SupplierSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            SupplierSpinner.setSelectedItem(withNullSupplier.size()-1);
+                            SupplierSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
                                 @Override
-                                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                    Supplier sp =(Supplier) SupplierSpinner.getItemAtPosition(position);
+                                public void onItemSelected(View view, int position, long id) {
+                                    Supplier sp =(Supplier) SupplierSpinner.getSelectedItem();
                                     SupplierID=String.valueOf(sp.getSupplierID());
 
                                 }
 
                                 @Override
-                                public void onNothingSelected(AdapterView<?> parent) {
+                                public void onNothingSelected() {
 
                                 }
                             });
@@ -163,10 +165,11 @@ public class FilterPurchaseMasterActivity extends AppCompatActivity {
                     i.putExtra("SupplierID", "");
                 }
                 else{
-                    i.putExtra("Supplier", SupplierID);
+                    i.putExtra("SupplierID", SupplierID);
                 }
 
                 startActivity(i);
+                finish();
 
             }
         });

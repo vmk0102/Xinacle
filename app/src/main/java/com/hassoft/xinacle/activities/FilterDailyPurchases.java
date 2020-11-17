@@ -11,25 +11,14 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.androidtrip.plugins.searchablespinner.SearchableSpinner;
-import com.androidtrip.plugins.searchablespinner.interfaces.OnItemSelectedListener;
-import com.google.gson.Gson;
 import com.hassoft.xinacle.R;
-import com.hassoft.xinacle.adapter.customerAdapter;
-import com.hassoft.xinacle.adapter.salesmanAdapter;
-import com.hassoft.xinacle.apis.GetCustomers;
-import com.hassoft.xinacle.apis.GetDailySales;
-import com.hassoft.xinacle.apis.GetSalesman;
-import com.hassoft.xinacle.model.Customers;
-import com.hassoft.xinacle.model.Salesman;
 import com.ibotta.android.support.pickerdialogs.SupportedDatePickerDialog;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 
 
-public class FilterDailySales extends AppCompatActivity {
+public class FilterDailyPurchases extends AppCompatActivity {
     TextView fromDate;
     TextView toDate;
     SearchableSpinner CustomerSpinner;
@@ -71,7 +60,7 @@ public class FilterDailySales extends AppCompatActivity {
                 int month = currentDate.get(Calendar.MONTH);
                 int dayOfMonth = currentDate.get(Calendar.DAY_OF_MONTH);
 
-                new SupportedDatePickerDialog(FilterDailySales.this, R.style.SpinnerDatePickerDialogTheme, new SupportedDatePickerDialog.OnDateSetListener() {
+                new SupportedDatePickerDialog(FilterDailyPurchases.this, R.style.SpinnerDatePickerDialogTheme, new SupportedDatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                         i1=i1+1;
@@ -91,7 +80,7 @@ public class FilterDailySales extends AppCompatActivity {
                 int year = currentDate.get(Calendar.YEAR);
                 int month = currentDate.get(Calendar.MONTH);
                 int dayOfMonth = currentDate.get(Calendar.DAY_OF_MONTH);
-                new SupportedDatePickerDialog(FilterDailySales.this, R.style.SpinnerDatePickerDialogTheme, new SupportedDatePickerDialog.OnDateSetListener() {
+                new SupportedDatePickerDialog(FilterDailyPurchases.this, R.style.SpinnerDatePickerDialogTheme, new SupportedDatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                         i1=i1+1;
@@ -111,7 +100,7 @@ public class FilterDailySales extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(FilterDailySales.this,DailySalesChart.class);
+                Intent i = new Intent(FilterDailyPurchases.this,DailySalesChart.class);
                 if(fromDate.getText()!=null && !fromDate.getText().toString().trim().equalsIgnoreCase("")) {
                     i.putExtra("FromDate", globalFromDate);
                 }else{

@@ -204,6 +204,7 @@ public class FilterSalesMasterActivity extends AppCompatActivity {
                 }
 
                 startActivity(i);
+                finish();
 
             }
         });

@@ -4,13 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.GridView;
 import android.widget.LinearLayout;
 
 import com.hassoft.xinacle.R;
-import com.hassoft.xinacle.adapter.optionsAdapter;
 
-public class PurchaseActivity extends Activity {
+public class InventoryActivity extends Activity {
 
     LinearLayout purchaseSummary;
     LinearLayout purchaseDetails;
@@ -20,26 +18,25 @@ public class PurchaseActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_purchase);
+        setContentView(R.layout.activity_inventory);
         purchaseSummary=(LinearLayout)findViewById(R.id.btnpurchasesummary);
-        purchaseDetails=(LinearLayout)findViewById(R.id.btnpurchasedetails);
-        dailyPurchase=(LinearLayout)findViewById(R.id.btndailypurchase);
+
         purchaseSummary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PurchaseActivity.this,FilterPurchaseMasterActivity.class));
+                startActivity(new Intent(InventoryActivity.this,FilterPurchaseMasterActivity.class));
             }
         });
         purchaseDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PurchaseActivity.this,FilterPurchaseTransactionActivity.class));
+                startActivity(new Intent(InventoryActivity.this,FilterPurchaseTransactionActivity.class));
             }
         });
         dailyPurchase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PurchaseActivity.this,FilterDailyPurchases.class));
+                startActivity(new Intent(InventoryActivity.this,FilterDailyPurchases.class));
             }
         });
     /*    setContentView(R.layout.activity_main);

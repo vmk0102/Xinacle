@@ -1,10 +1,7 @@
 package com.hassoft.xinacle.activities;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -13,19 +10,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.gson.Gson;
 import com.hassoft.xinacle.R;
 import com.hassoft.xinacle.adapter.purchaseSummaryAdapter;
-import com.hassoft.xinacle.adapter.salesSummaryAdapter;
+import com.hassoft.xinacle.adapter.purchaseTransactionAdapter;
 import com.hassoft.xinacle.apis.GetPurchaseSummary;
-import com.hassoft.xinacle.apis.GetSalesSummary;
+import com.hassoft.xinacle.apis.GetPurchaseTransaction;
 import com.hassoft.xinacle.model.PurchaseMaster;
-import com.hassoft.xinacle.model.SalesSummary;
+import com.hassoft.xinacle.model.PurchaseTransaction;
 
 
-public class purchaseSummaryActivity extends AppCompatActivity {
+public class purchaseTransactionActivity extends AppCompatActivity {
 TextView fromdate;
 TextView todate;
 ListView salesTransactionList;
 TextView totalNetSales;
-Button btnViewChart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,40 +36,25 @@ Button btnViewChart;
         todate.setText("To: "+getIntent().getStringExtra("ToDate"));
         todate.setFocusable(false);
         todate.setClickable(true);
-        btnViewChart=(Button)findViewById(R.id.showGraph);
-        btnViewChart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        ProgressDialog pd =new ProgressDialog(purchaseSummaryActivity.this);
+        ProgressDialog pd =new ProgressDialog(purchaseTransactionActivity.this);
         pd.setTitle("Please wait");
         pd.show();
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final String s = new GetPurchaseSummary().getData(purchaseSummaryActivity.this,getIntent().getStringExtra("FromDate"),getIntent().getStringExtra("ToDate"),getIntent().getStringExtra("SupplierID"),"1");
+                final String s = new GetPurchaseTransaction().getData(purchaseTransactionActivity.this,getIntent().getStringExtra("FromDate"),getIntent().getStringExtra("ToDate"),getIntent().getStringExtra("SupplierID"),getIntent().getStringExtra("ProductID"),"1");
 
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
 
-                        PurchaseMaster[] sa = new Gson().fromJson(String.valueOf(s), PurchaseMaster[].class);
+                        PurchaseTransaction[] sa = new Gson().fromJson(String.valueOf(s), PurchaseTransaction[].class);
                         if(sa!=null) {
-                            purchaseSummaryAdapter psa = new purchaseSummaryAdapter(purchaseSummaryActivity.this, sa);
-                            salesTransactionList.setAdapter(psa);
-                            String sum=psa.sumofNet();
+                            purchaseTransactionAdapter pta = new purchaseTransactionAdapter(purchaseTransactionActivity.this, sa);
+                            salesTransactionList.setAdapter(pta);
+                            String sum=pta.sumofNet();
                             totalNetSales.setText("Total Net Purchases: "+ sum);
                             pd.cancel();
-                            btnViewChart.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent i = new Intent(purchaseSummaryActivity.this,SalesTransactionChart.class);
-                                    i.putExtra("netpurchases",s);
-                                    startActivity(i);
-                                }
-                            });
 
 
                         }

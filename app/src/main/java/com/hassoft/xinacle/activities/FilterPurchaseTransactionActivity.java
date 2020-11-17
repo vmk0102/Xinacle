@@ -15,13 +15,13 @@ import com.google.gson.Gson;
 import com.hassoft.xinacle.R;
 import com.hassoft.xinacle.adapter.customerAdapter;
 import com.hassoft.xinacle.adapter.productsAdapter;
-import com.hassoft.xinacle.adapter.salesmanAdapter;
+import com.hassoft.xinacle.adapter.suppliersAdapter;
 import com.hassoft.xinacle.apis.GetCustomers;
 import com.hassoft.xinacle.apis.GetProducts;
-import com.hassoft.xinacle.apis.GetSalesman;
 import com.hassoft.xinacle.model.Customers;
 import com.hassoft.xinacle.model.Products;
-import com.hassoft.xinacle.model.Salesman;
+import com.hassoft.xinacle.model.PurchaseTransaction;
+import com.hassoft.xinacle.model.Supplier;
 import com.ibotta.android.support.pickerdialogs.SupportedDatePickerDialog;
 
 import java.text.SimpleDateFormat;
@@ -30,13 +30,13 @@ import java.util.Arrays;
 import java.util.Calendar;
 
 
-public class FilterSalesTransactionActivity extends AppCompatActivity {
+public class FilterPurchaseTransactionActivity extends AppCompatActivity {
     TextView fromDate;
     TextView toDate;
-    SearchableSpinner CustomerSpinner;
+    SearchableSpinner SupplierrSpinner;
     SearchableSpinner  ProductSpinner;
     Button SubmitButton;
-    String CustomerID="";
+    String SupplierID="";
     String ProductID="";
     String globalFromDate="";
     String globalToDate="";
@@ -44,10 +44,10 @@ public class FilterSalesTransactionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.filtersalestransaction);
+        setContentView(R.layout.filterpurchasetransaction);
         fromDate=(TextView)findViewById(R.id.fromDate);
         toDate=(TextView)findViewById(R.id.toDate);
-        CustomerSpinner=(SearchableSpinner) findViewById(R.id.listcustomer);
+        SupplierrSpinner=(SearchableSpinner) findViewById(R.id.listsupplier);
         ProductSpinner=(SearchableSpinner) findViewById(R.id.listproduct);
 
         SubmitButton=(Button)findViewById(R.id.submitFilter);
@@ -70,7 +70,7 @@ public class FilterSalesTransactionActivity extends AppCompatActivity {
                 int year = currentDate.get(Calendar.YEAR);
                 int month = currentDate.get(Calendar.MONTH);
                 int dayOfMonth = currentDate.get(Calendar.DAY_OF_MONTH);
-                new SupportedDatePickerDialog(FilterSalesTransactionActivity.this, R.style.SpinnerDatePickerDialogTheme, new SupportedDatePickerDialog.OnDateSetListener() {
+                new SupportedDatePickerDialog(FilterPurchaseTransactionActivity.this, R.style.SpinnerDatePickerDialogTheme, new SupportedDatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                         i1=i1+1;
@@ -90,7 +90,7 @@ public class FilterSalesTransactionActivity extends AppCompatActivity {
                 int year = currentDate.get(Calendar.YEAR);
                 int month = currentDate.get(Calendar.MONTH);
                 int dayOfMonth = currentDate.get(Calendar.DAY_OF_MONTH);
-                new SupportedDatePickerDialog(FilterSalesTransactionActivity.this, R.style.SpinnerDatePickerDialogTheme, new SupportedDatePickerDialog.OnDateSetListener() {
+                new SupportedDatePickerDialog(FilterPurchaseTransactionActivity.this, R.style.SpinnerDatePickerDialogTheme, new SupportedDatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                         i1=i1+1;
@@ -106,30 +106,30 @@ public class FilterSalesTransactionActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String s = new GetCustomers().getData(FilterSalesTransactionActivity.this,"1");
-                String sm= new GetProducts().getData(FilterSalesTransactionActivity.this,"1");
+                String s = new GetCustomers().getData(FilterPurchaseTransactionActivity.this,"1");
+                String sm= new GetProducts().getData(FilterPurchaseTransactionActivity.this,"1");
                 Gson gson= new Gson();
-                Customers[] customers=gson.fromJson(s,Customers[].class);
+                Supplier[] suppliers=gson.fromJson(s,Supplier[].class);
                 Products[] products = gson.fromJson(sm,Products[].class);
 
                 if(s!=null && sm!=null){
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            ArrayList<Customers> withNullCustomer = new ArrayList<>(Arrays.asList(customers));
-                            Customers nullvaluecustomer= new Customers();
-                            nullvaluecustomer.setCustomerID(0);
-                            nullvaluecustomer.setCustomerName("ALL");
-                            withNullCustomer.add(nullvaluecustomer);
+                            ArrayList<Supplier> withNullSupplier = new ArrayList<>(Arrays.asList(suppliers));
+                            Supplier nullvaluesupplier= new Supplier();
+                            nullvaluesupplier.setSupplierID(0);
+                            nullvaluesupplier.setSupplierName("ALL");
+                            withNullSupplier.add(nullvaluesupplier);
 
-                            customerAdapter ca = new customerAdapter(FilterSalesTransactionActivity.this,withNullCustomer);
-                            CustomerSpinner.setAdapter(ca);
-                            CustomerSpinner.setSelectedItem(withNullCustomer.size()-1);
-                            CustomerSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+                            suppliersAdapter sa = new suppliersAdapter(FilterPurchaseTransactionActivity.this,withNullSupplier);
+                            SupplierrSpinner.setAdapter(sa);
+                            SupplierrSpinner.setSelectedItem(withNullSupplier.size()-1);
+                            SupplierrSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
                                 @Override
                                 public void onItemSelected(View view, int position, long id) {
-                                    Customers c = (Customers)CustomerSpinner.getSelectedItem();
-                                    CustomerID=String.valueOf(c.getCustomerID());
+                                    Supplier s = (Supplier) SupplierrSpinner.getSelectedItem();
+                                    SupplierID=String.valueOf(s.getSupplierID());
                                 }
 
                                 @Override
@@ -143,7 +143,7 @@ public class FilterSalesTransactionActivity extends AppCompatActivity {
                             nullproduct.setProductID(0);;
                             nullproduct.setProductName("ALL");
                             withNullProduct.add(nullproduct);
-                            productsAdapter pma = new productsAdapter(FilterSalesTransactionActivity.this,withNullProduct);
+                            productsAdapter pma = new productsAdapter(FilterPurchaseTransactionActivity.this,withNullProduct);
 
 
 
@@ -175,7 +175,7 @@ public class FilterSalesTransactionActivity extends AppCompatActivity {
         SubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(FilterSalesTransactionActivity.this,SalesTransactionActivity.class);
+                Intent i = new Intent(FilterPurchaseTransactionActivity.this, purchaseTransactionActivity.class);
                 if(fromDate.getText()!=null && !fromDate.getText().toString().trim().equalsIgnoreCase("")) {
                     i.putExtra("FromDate", fromDate.getText().toString());
                 }else{
@@ -186,13 +186,12 @@ public class FilterSalesTransactionActivity extends AppCompatActivity {
                 }else {
                     i.putExtra("ToDate", "");
                 }
-                if(CustomerID.equalsIgnoreCase("0")) {
-                    i.putExtra("CustomerID", "");
+                if(SupplierID.equalsIgnoreCase("0")) {
+                    i.putExtra("SupplierID", "");
                 }
                 else{
-                    i.putExtra("CustomerID", CustomerID);
+                    i.putExtra("SupplierID", SupplierID);
                 }
-
 
                 if(ProductID.equalsIgnoreCase("0")) {
                     i.putExtra("ProductID", "");
