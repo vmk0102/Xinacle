@@ -18,12 +18,16 @@ public class MainActivity extends Activity {
 
     LinearLayout salesBox;
     LinearLayout purchaseBox;
+    LinearLayout AccountLedgerBox;
+    LinearLayout InventoryBox;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         salesBox=(LinearLayout)findViewById(R.id.salesBox);
         purchaseBox=(LinearLayout)findViewById(R.id.purchaseBox);
+        AccountLedgerBox=(LinearLayout)findViewById(R.id.accountsBox);
+        InventoryBox=(LinearLayout)findViewById(R.id.inventoryBox);
         salesBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,6 +38,18 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,PurchaseActivity.class));
+            }
+        });
+        AccountLedgerBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,FilterAccountLedgerActivity.class));
+            }
+        });
+        InventoryBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,InventoryActivity.class));
             }
         });
       /*  lv=(GridView)findViewById(R.id.GridViewOptions);

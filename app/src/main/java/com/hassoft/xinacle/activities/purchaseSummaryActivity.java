@@ -69,7 +69,7 @@ Button btnViewChart;
                             btnViewChart.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    Intent i = new Intent(purchaseSummaryActivity.this,SalesTransactionChart.class);
+                                    Intent i = new Intent(purchaseSummaryActivity.this,PurchaseSummaryChart.class);
                                     i.putExtra("netpurchases",s);
                                     startActivity(i);
                                 }

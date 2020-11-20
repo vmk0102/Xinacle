@@ -76,14 +76,22 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".activities.FilterDailyPurchases"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.DailyPurchasesChart"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".activities.FilterPur"
+            android:name=".activities.PurchaseSummaryChart"
             android:screenOrientation="landscape" />
-
+        <activity
+            android:name=".activities.FilterAccountLedgerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.AccountLedgersActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activities.InventoryActivity"
+            android:screenOrientation="portrait" />
 
 
 

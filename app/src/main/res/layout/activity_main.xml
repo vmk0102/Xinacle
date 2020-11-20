@@ -124,7 +124,7 @@
                     android:layout_alignParentEnd="true"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:id="@+id/configBox"
+                    android:id="@+id/inventoryBox"
                     android:background="@android:drawable/dialog_holo_light_frame"
                     android:layout_gravity="center"
                     android:layout_height="120dp">

@@ -14,7 +14,7 @@ import org.apache.http.util.EntityUtils;
 
 public class GetAccountsLedger {
 
-    public String getData(Context context, String fromDate, String toDate, String AccountCode, int CompanyBranchID) {
+    public String getData(Context context, String fromDate, String toDate, String AccountCode, String CompanyBranchID) {
 
         try {
 

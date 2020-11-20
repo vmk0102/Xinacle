@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:background="@color/hassoftblue"
+        android:id="@+id/headings"
+        android:gravity="center"
+
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+
+        android:layout_height="60dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+
+            android:textColor="@color/white"
+            android:text="Account Ledgers"
+
+            />
+        <LinearLayout
+            android:layout_marginRight="10dp"
+            android:id="@+id/Dates"
+            android:layout_below="@id/headings"
+            android:gravity="end"
+            android:layout_gravity="end"
+
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/fromdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/white"
+                android:text="From: "
+
+
+                />
+            <TextView
+                android:id="@+id/todate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:text="To: "
+
+                />
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+        <HorizontalScrollView
+
+            android:id="@+id/contentData"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/headings"
+            android:layout_marginTop="7dp">
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+
+                    android:id="@+id/headingsL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
+
+                    <TextView
+                        android:id="@+id/txtSalesNo"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Voucher ID."
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/txtEDate"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:text="Date"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/txtSupplierName"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:text="Type Name"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/txtGrossAmount"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:text="Debit Amount"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/black"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/txtDiscountAmount"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:text="Credit Amount"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/black"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/txtSalesTaxAmount"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:text="Balance"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/black"
+                        android:textSize="13dp"
+
+                        />
+
+
+                    <TextView
+                        android:id="@+id/txtNetAmount"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:text="Account Title"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/black"
+                        android:textSize="13dp" />
+
+
+                </LinearLayout>
+
+
+                <ListView
+                    android:id="@+id/accountsLedgerList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/headingsL"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="50dp" />
+            </LinearLayout>
+        </HorizontalScrollView>
+        <TextView
+            android:id="@+id/TotalNetAmount"
+            android:layout_below="@id/contentData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-35dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/black"
+            android:text="Total Net Sales: 10000000000"
+            />
+
+    </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -19,26 +19,6 @@ public class InventoryActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
-        purchaseSummary=(LinearLayout)findViewById(R.id.btnpurchasesummary);
-
-        purchaseSummary.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(InventoryActivity.this,FilterPurchaseMasterActivity.class));
-            }
-        });
-        purchaseDetails.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(InventoryActivity.this,FilterPurchaseTransactionActivity.class));
-            }
-        });
-        dailyPurchase.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(InventoryActivity.this,FilterDailyPurchases.class));
-            }
-        });
     /*    setContentView(R.layout.activity_main);
         lv=(GridView)findViewById(R.id.GridViewOptions);
         String[] OptionArray={"Purchase Transaction","Purchase Summary"};
