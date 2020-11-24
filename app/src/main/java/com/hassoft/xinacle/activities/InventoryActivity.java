@@ -10,21 +10,14 @@ import com.hassoft.xinacle.R;
 
 public class InventoryActivity extends Activity {
 
-    LinearLayout purchaseSummary;
-    LinearLayout purchaseDetails;
-    LinearLayout dailyPurchase;
-    LinearLayout monthlyPurchase;
-    LinearLayout topPurchase;
+    LinearLayout runningStock;
+    LinearLayout productLedger;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
-    /*    setContentView(R.layout.activity_main);
-        lv=(GridView)findViewById(R.id.GridViewOptions);
-        String[] OptionArray={"Purchase Transaction","Purchase Summary"};
-        optionsAdapter oa = new optionsAdapter(PurchaseActivity.this,OptionArray);
-        lv.setAdapter(oa);
-*/
+        runningStock=(LinearLayout)findViewById(R.id.btnrunninigstock);
+        productLedger=(LinearLayout)findViewById(R.id.btnproductledger);
 
 
 

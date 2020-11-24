@@ -25,7 +25,7 @@ TextView totalNetSales;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.purchasesummary);
+        setContentView(R.layout.purchasetransaction);
         fromdate=(TextView)findViewById(R.id.fromdate);
         todate=(TextView)findViewById(R.id.todate);
         salesTransactionList=(ListView)findViewById(R.id.salesTransactionList);

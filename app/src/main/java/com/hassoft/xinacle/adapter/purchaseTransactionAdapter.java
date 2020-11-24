@@ -55,7 +55,7 @@ public class purchaseTransactionAdapter extends BaseAdapter {
         }
 
 
-        final PurchaseMaster purchaseMaster = (PurchaseMaster) getItem(i);
+        final PurchaseTransaction purchaseTransaction = (PurchaseTransaction) getItem(i);
         TextView SalesNo=(TextView)view.findViewById(R.id.txtPurchaseNo);
         TextView EDate=(TextView)view.findViewById(R.id.txtEDate);
         TextView CustomerName=(TextView)view.findViewById(R.id.txtSupplierName);
@@ -69,48 +69,85 @@ public class purchaseTransactionAdapter extends BaseAdapter {
 
         SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
 
-        if(purchaseMaster.getDiscountAmount()>0) {
-            DiscountAmount.setText(String.valueOf(decimalFormat.format(purchaseMaster.getDiscountAmount())));
+        if(String.valueOf(purchaseTransaction.getDiscountAmount())!=null){
+        if(purchaseTransaction.getDiscountAmount()>0) {
+            DiscountAmount.setText(String.valueOf(decimalFormat.format(purchaseTransaction.getDiscountAmount())));
         }else{
             DiscountAmount.setText("0.00");
         }
-        if(purchaseMaster.getGrossAmount()>0) {
-            GrossAmount.setText(String.valueOf(decimalFormat.format(purchaseMaster.getGrossAmount())));
         }else {
+            DiscountAmount.setText("0.00");
+        }
+
+        if(String.valueOf(purchaseTransaction.getGrossAmount())!=null) {
+            if (purchaseTransaction.getGrossAmount() > 0) {
+                GrossAmount.setText(String.valueOf(decimalFormat.format(purchaseTransaction.getGrossAmount())));
+            } else {
+                GrossAmount.setText("0.00");
+            }
+        }else{
             GrossAmount.setText("0.00");
         }
-        if(purchaseMaster.getNetAmount()>0){
-            NetAmount.setText(String.valueOf(decimalFormat.format(purchaseMaster.getNetAmount())));
+        if(String.valueOf(purchaseTransaction.getNetAmount())!=null) {
+            if (purchaseTransaction.getNetAmount() > 0) {
+                NetAmount.setText(String.valueOf(decimalFormat.format(purchaseTransaction.getNetAmount())));
 
+            } else {
+                NetAmount.setText("0.00");
+            }
         }else {
             NetAmount.setText("0.00");
         }
-        if(purchaseMaster.getSalesTaxAmount()>0) {
-            SalesTaxAmount.setText(decimalFormat.format(purchaseMaster.getSalesTaxAmount()));
+
+        if(String.valueOf(purchaseTransaction.getSalesTaxAmount())!=null) {
+            if (purchaseTransaction.getSalesTaxAmount() > 0) {
+                SalesTaxAmount.setText(decimalFormat.format(purchaseTransaction.getSalesTaxAmount()));
+            } else {
+                SalesTaxAmount.setText("0.00");
+
+            }
         }else{
             SalesTaxAmount.setText("0.00");
-
         }
-        if(purchaseMaster.getPaidAmount()>0) {
-            PaidAmount.setText(decimalFormat.format(purchaseMaster.getPaidAmount()));
+        if(String.valueOf(purchaseTransaction.getPaidAmount())!=null) {
+            if (purchaseTransaction.getPaidAmount() > 0) {
+                PaidAmount.setText(decimalFormat.format(purchaseTransaction.getPaidAmount()));
+            } else {
+                PaidAmount.setText("0.00");
+
+            }
         }else{
             PaidAmount.setText("0.00");
-
         }
-        if(purchaseMaster.getBalanceAmount()>0) {
-             BalanceAmount.setText(decimalFormat.format(purchaseMaster.getBalanceAmount()));
-        }else{
+
+        if(purchaseTransaction.getBalanceAmount()!=null) {
+            if (purchaseTransaction.getBalanceAmount() > 0) {
+                BalanceAmount.setText(decimalFormat.format(purchaseTransaction.getBalanceAmount()));
+            } else {
+                BalanceAmount.setText("0.00");
+
+            }
+        }else {
             BalanceAmount.setText("0.00");
-
         }
-        if(purchaseMaster.getReturnAmount()>0) {
-            ReturnAmount.setText(decimalFormat.format(purchaseMaster.getReturnAmount()));
-        }else{
+
+
+        if(purchaseTransaction.getReturnAmount()!=null) {
+            if (purchaseTransaction.getReturnAmount() > 0) {
+                ReturnAmount.setText(decimalFormat.format(purchaseTransaction.getReturnAmount()));
+            } else {
+                ReturnAmount.setText("0.00");
+            }
+        }else {
             ReturnAmount.setText("0.00");
         }
-        SalesNo.setText(purchaseMaster.getPurchaseNo());
-        EDate.setText(purchaseMaster.getEDate());
-        CustomerName.setText(String.valueOf(purchaseMaster.getSupplierName()));
+
+
+
+
+        SalesNo.setText(purchaseTransaction.getPurchaseNo());
+        EDate.setText(purchaseTransaction.getEDate());
+        CustomerName.setText(String.valueOf(purchaseTransaction.getSupplierName()));
 
         return  view;
     }

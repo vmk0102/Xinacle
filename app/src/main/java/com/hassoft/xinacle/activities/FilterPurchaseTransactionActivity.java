@@ -177,12 +177,12 @@ public class FilterPurchaseTransactionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(FilterPurchaseTransactionActivity.this, purchaseTransactionActivity.class);
                 if(fromDate.getText()!=null && !fromDate.getText().toString().trim().equalsIgnoreCase("")) {
-                    i.putExtra("FromDate", fromDate.getText().toString());
+                    i.putExtra("FromDate", globalFromDate);
                 }else{
                     i.putExtra("FromDate", "");
                 }
                 if(toDate.getText().toString().trim()!=null && !toDate.getText().toString().trim().equalsIgnoreCase("")) {
-                    i.putExtra("ToDate", toDate.getText().toString());
+                    i.putExtra("ToDate", globalToDate);
                 }else {
                     i.putExtra("ToDate", "");
                 }

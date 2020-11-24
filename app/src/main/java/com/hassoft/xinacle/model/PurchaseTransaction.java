@@ -9,11 +9,14 @@ public class PurchaseTransaction {
    private float SalesTax;
    private float GrossAmount;
    private float NetAmount;
+   private float PaidAmount;
    private float DiscountAmount;
    private float SalesTaxAmount;
    private String SupplierName;
    private String ProductName;
    private String InvoiceNo;
+   private Double BalanceAmount;
+   private Double ReturnAmount;
 
     public String getPurchaseNo() {
         return PurchaseNo;
@@ -117,6 +120,30 @@ public class PurchaseTransaction {
 
     public void setInvoiceNo(String invoiceNo) {
         InvoiceNo = invoiceNo;
+    }
+
+    public float getPaidAmount() {
+        return PaidAmount;
+    }
+
+    public void setPaidAmount(float paidAmount) {
+        PaidAmount = paidAmount;
+    }
+
+    public Double getBalanceAmount() {
+        return BalanceAmount;
+    }
+
+    public void setBalanceAmount(Double balanceAmount) {
+        BalanceAmount = balanceAmount;
+    }
+
+    public Double getReturnAmount() {
+        return ReturnAmount;
+    }
+
+    public void setReturnAmount(Double returnAmount) {
+        ReturnAmount = returnAmount;
     }
 }
 /*
