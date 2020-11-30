@@ -92,6 +92,12 @@
         <activity
             android:name=".activities.InventoryActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.RunningStockActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activities.ProductLedger"
+            android:screenOrientation="landscape" />
 
 
 

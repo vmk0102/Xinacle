@@ -18,6 +18,7 @@ import com.hassoft.xinacle.adapter.productsAdapter;
 import com.hassoft.xinacle.adapter.suppliersAdapter;
 import com.hassoft.xinacle.apis.GetCustomers;
 import com.hassoft.xinacle.apis.GetProducts;
+import com.hassoft.xinacle.apis.GetSupplier;
 import com.hassoft.xinacle.model.Customers;
 import com.hassoft.xinacle.model.Products;
 import com.hassoft.xinacle.model.PurchaseTransaction;
@@ -106,7 +107,7 @@ public class FilterPurchaseTransactionActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String s = new GetCustomers().getData(FilterPurchaseTransactionActivity.this,"1");
+                String s = new GetSupplier().getData(FilterPurchaseTransactionActivity.this,"1");
                 String sm= new GetProducts().getData(FilterPurchaseTransactionActivity.this,"1");
                 Gson gson= new Gson();
                 Supplier[] suppliers=gson.fromJson(s,Supplier[].class);

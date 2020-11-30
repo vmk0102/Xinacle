@@ -18,6 +18,18 @@ public class InventoryActivity extends Activity {
         setContentView(R.layout.activity_inventory);
         runningStock=(LinearLayout)findViewById(R.id.btnrunninigstock);
         productLedger=(LinearLayout)findViewById(R.id.btnproductledger);
+        runningStock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(InventoryActivity.this,RunningStockActivity.class));
+            }
+        });
+        productLedger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(InventoryActivity.this,ProductLedger.class));
+            }
+        });
 
 
 
