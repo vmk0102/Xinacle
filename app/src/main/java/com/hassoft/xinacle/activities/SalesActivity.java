@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.hassoft.xinacle.R;
 import com.hassoft.xinacle.adapter.optionsAdapter;
@@ -43,6 +44,18 @@ public class SalesActivity extends Activity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SalesActivity.this,FilterDailySales.class));
+            }
+        });
+        MonthlySales.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(SalesActivity.this, "Under Development", Toast.LENGTH_SHORT).show();
+            }
+        });
+        TopSales.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(SalesActivity.this, "Under Development", Toast.LENGTH_SHORT).show();
             }
         });
 

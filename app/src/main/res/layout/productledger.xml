@@ -22,7 +22,7 @@
             android:layout_marginLeft="10dp"
 
             android:textColor="@color/white"
-            android:text="Sales Transaction"
+            android:text="Product Ledger"
 
             />
         <LinearLayout
@@ -30,6 +30,7 @@
             android:id="@+id/Dates"
             android:layout_below="@id/headings"
             android:gravity="end"
+
             android:layout_gravity="end"
 
             android:orientation="vertical"
@@ -68,6 +69,7 @@
             android:id="@+id/contentData"
             android:layout_below="@id/headings"
             android:layout_marginTop="10dp"
+            android:fillViewport="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         <LinearLayout
@@ -86,11 +88,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:layout_width="120dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
                 android:textColor="@color/black"
-                android:text="Product"
+                android:text="Date"
                 android:textStyle="bold"
                 android:layout_gravity="center"
 
@@ -105,74 +107,98 @@
                 android:textSize="15dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:text="Box Quantity"
+                android:text="In"
                 android:layout_gravity="center"
                 />
             <TextView
 
+                android:layout_width="60dp"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textAlignment="viewEnd"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:text="Out"
+                />
+            <TextView
+                android:layout_width="60dp"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/black"
+                android:text="Balance"
+                />
+            <TextView
+
+                android:layout_width="120dp"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="Product Name"
+                android:textAlignment="viewStart"
+                />
+            <TextView
+
+                android:layout_width="120dp"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textAlignment="viewStart"
+                android:text="Particular"
+                />
+
+
+            <TextView
+                android:layout_width="60dp"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Opening\nStock"
+                android:textAlignment="viewEnd"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+
+            <TextView
                 android:layout_width="80dp"
-                android:layout_marginLeft="10dp"
+                android:textStyle="bold"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:textStyle="bold"
-                android:textAlignment="viewEnd"
-                android:layout_gravity="center"
-                android:textColor="@color/black"
-                android:text="Rate"
-                />
-            <TextView
-                android:layout_width="70dp"
                 android:layout_marginLeft="10dp"
-                android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                android:textAlignment="viewEnd"
-                android:textColor="@color/black"
-                android:text="Discount Rate"
-                />
-            <TextView
-
-                android:layout_width="80dp"
-                android:layout_marginLeft="10dp"
-                android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:text="Gross Amount"
-                android:textAlignment="viewEnd"
-                />
-            <TextView
-
-                android:layout_width="80dp"
-                android:layout_marginLeft="10dp"
-                android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textAlignment="viewEnd"
-                android:text="Net \n Amount"
-                />
-
-
-            <TextView
-                android:layout_width="97dp"
-                android:textStyle="bold"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:text="Customer \nName"
+                android:text="Warehouse\nName"
                 android:textAlignment="viewStart"
                 android:layout_gravity="center"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
 
+            <TextView
+                android:layout_width="100dp"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Transaction\nNumber"
+                android:textAlignment="viewEnd"
+                android:lines="2"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+
+
         </LinearLayout>
 
 
     <ListView
-        android:id="@+id/salesTransactionList"
+        android:id="@+id/productLedgerList"
         android:layout_marginTop="10dp"
         android:layout_below="@id/headingsL"
         android:layout_marginLeft="20dp"
@@ -182,17 +208,6 @@
         android:layout_marginBottom="50dp"/>
         </LinearLayout>
         </HorizontalScrollView>
-        <TextView
-            android:id="@+id/TotalNetAmount"
-            android:layout_below="@id/contentData"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-35dp"
-            android:textStyle="bold"
-            android:layout_marginLeft="20dp"
-            android:textColor="@color/black"
-            android:text="Total Net Sales: 10000000000"
-            />
 
     </RelativeLayout>
 

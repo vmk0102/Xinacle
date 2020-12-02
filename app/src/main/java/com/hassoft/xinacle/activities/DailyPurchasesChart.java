@@ -69,10 +69,6 @@ public class DailyPurchasesChart extends AppCompatActivity {
         }).start();
 
 
-
-
-
-
     }
 
     public ArrayList<Entry> dataSet1(DailySales[] sa){

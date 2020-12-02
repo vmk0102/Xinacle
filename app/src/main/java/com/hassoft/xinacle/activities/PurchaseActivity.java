@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.hassoft.xinacle.R;
 import com.hassoft.xinacle.adapter.optionsAdapter;
@@ -24,6 +25,8 @@ public class PurchaseActivity extends Activity {
         purchaseSummary=(LinearLayout)findViewById(R.id.btnpurchasesummary);
         purchaseDetails=(LinearLayout)findViewById(R.id.btnpurchasedetails);
         dailyPurchase=(LinearLayout)findViewById(R.id.btndailypurchase);
+        monthlyPurchase=(LinearLayout)findViewById(R.id.btnmonthlypurchase);
+        topPurchase=(LinearLayout)findViewById(R.id.btntoppurchase);
         purchaseSummary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,6 +43,18 @@ public class PurchaseActivity extends Activity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(PurchaseActivity.this,FilterDailyPurchases.class));
+            }
+        });
+        monthlyPurchase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(PurchaseActivity.this, "Under Development", Toast.LENGTH_SHORT).show();
+            }
+        });
+        topPurchase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(PurchaseActivity.this, "Under Development", Toast.LENGTH_SHORT).show();
             }
         });
     /*    setContentView(R.layout.activity_main);

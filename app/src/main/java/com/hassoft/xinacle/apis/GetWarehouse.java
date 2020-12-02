@@ -13,19 +13,17 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
-public class GetDailySales {
-    public String getData(Context context, String fromDate, String toDate, int CompanyBranchID) {
+public class GetWarehouse {
+
+    public String getData(Context context,String CompanyBranchID) {
         if(GlobalFunctions.isInternetAvailable(context)) {
+
             try {
 
-                String getUrl = context.getResources().getString(R.string.apilinkprefix) + "Sales/GetDailySales?FromDate=&ToDate=&CompanyBranchID=" + CompanyBranchID;//https://www.pakistanscrabble.org/api.php";
+                String getUrl = context.getResources().getString(R.string.apilinkprefix) + "Configuration/GetWarehouse?CompanyBranchID=" + CompanyBranchID;//https://www.pakistanscrabble.org/api.php";
                 Log.v("SOMEONE ONCE SAID", "postURL: " + getUrl);
-
                 HttpClient httpClient = new DefaultHttpClient();
-
                 HttpGet httpGet = new HttpGet(getUrl);
-
-
                 HttpResponse response = httpClient.execute(httpGet);
                 HttpEntity resEntity = response.getEntity();
 

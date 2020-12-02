@@ -54,12 +54,12 @@ public class FilterSalesTransactionActivity extends AppCompatActivity {
         final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Calendar c = Calendar.getInstance();
 
-        toDate.setText(sdf.format(c.getTime()));
+       // toDate.setText(sdf.format(c.getTime()));
         Calendar fd=Calendar.getInstance();
         fd.set(Calendar.MONTH,c.getTime().getMonth());
         fd.set(Calendar.DAY_OF_MONTH,1);
         fd.set(Calendar.YEAR,c.getTime().getYear()+1900);
-        fromDate.setText(sdf.format(fd.getTime()));
+      //  fromDate.setText(sdf.format(fd.getTime()));
 
         globalFromDate=sdf.format(fd.getTime());
         globalToDate=sdf.format(c.getTime());
@@ -177,12 +177,12 @@ public class FilterSalesTransactionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(FilterSalesTransactionActivity.this,SalesTransactionActivity.class);
                 if(fromDate.getText()!=null && !fromDate.getText().toString().trim().equalsIgnoreCase("")) {
-                    i.putExtra("FromDate", fromDate.getText().toString());
+                    i.putExtra("FromDate", globalFromDate);
                 }else{
                     i.putExtra("FromDate", "");
                 }
                 if(toDate.getText().toString().trim()!=null && !toDate.getText().toString().trim().equalsIgnoreCase("")) {
-                    i.putExtra("ToDate", toDate.getText().toString());
+                    i.putExtra("ToDate", globalToDate);
                 }else {
                     i.putExtra("ToDate", "");
                 }
@@ -202,7 +202,7 @@ public class FilterSalesTransactionActivity extends AppCompatActivity {
                 }
 
                 startActivity(i);
-                finish();
+
 
             }
         });

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -53,7 +54,7 @@ Button btnViewChart;
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-
+                        try{
                         AccountsLedger[] sa = new Gson().fromJson(String.valueOf(s), AccountsLedger[].class);
                         if(sa!=null) {
                             accountsLedgerAdapter asa = new accountsLedgerAdapter(AccountLedgersActivity.this, sa);
@@ -69,8 +70,11 @@ Button btnViewChart;
                                     startActivity(i);
                                 }
                             });*/
+                            }
 
-
+                        }catch (Exception e){
+                            Toast.makeText(AccountLedgersActivity.this, "Could not fetch data, please try again", Toast.LENGTH_SHORT).show();
+                            pd.cancel();
                         }
 
                     }

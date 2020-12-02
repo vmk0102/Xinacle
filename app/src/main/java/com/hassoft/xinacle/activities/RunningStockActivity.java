@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -46,18 +47,24 @@ ListView runningStockList;
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        try {
 
-                        RunningStock[] ra = new Gson().fromJson(String.valueOf(s), RunningStock[].class);
-                        if(ra!=null) {
-                            runningStockAdapter pta = new runningStockAdapter(RunningStockActivity.this, ra);
-                            runningStockList.setAdapter(pta);
-                            //String sum=pta.sumofNet();
-                            //totalNetSales.setText("Total Net Purchases: "+ sum);
+                            RunningStock[] ra = new Gson().fromJson(String.valueOf(s), RunningStock[].class);
+                            if (ra != null) {
+                                runningStockAdapter pta = new runningStockAdapter(RunningStockActivity.this, ra);
+                                runningStockList.setAdapter(pta);
+                                //String sum=pta.sumofNet();
+                                //totalNetSales.setText("Total Net Purchases: "+ sum);
+                                pd.cancel();
+
+
+                            }
+
+
+                        }catch (Exception e){
+                            Toast.makeText(RunningStockActivity.this, "Could not fetch data, please try again", Toast.LENGTH_SHORT).show();
                             pd.cancel();
-
-
                         }
-
                     }
                 });
             }

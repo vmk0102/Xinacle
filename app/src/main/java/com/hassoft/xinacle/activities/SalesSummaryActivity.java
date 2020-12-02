@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -50,31 +51,36 @@ Button ShowGraph;
             @Override
             public void run() {
                 final String s = new GetSalesSummary().getData(SalesSummaryActivity.this,getIntent().getStringExtra("FromDate"),getIntent().getStringExtra("ToDate"),getIntent().getStringExtra("CustomerID"),"","1");
-                final String p = new GetPurchaseSummary().getData(SalesSummaryActivity.this,getIntent().getStringExtra("FromDate"),getIntent().getStringExtra("ToDate"),getIntent().getStringExtra("CustomerID"),"1");
 
 
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        try {
 
-                        SalesSummary[] sa = new Gson().fromJson(String.valueOf(s), SalesSummary[].class);
-                        if(sa!=null) {
-                            salesSummaryAdapter sta = new salesSummaryAdapter(SalesSummaryActivity.this, sa);
-                            salesTransactionList.setAdapter(sta);
-                            String sum=sta.sumofNet();
-                            totalNetSales.setText("Total Net Sales: "+ sum);
+                            SalesSummary[] sa = new Gson().fromJson(String.valueOf(s), SalesSummary[].class);
+                            if (sa != null) {
+                                salesSummaryAdapter sta = new salesSummaryAdapter(SalesSummaryActivity.this, sa);
+                                salesTransactionList.setAdapter(sta);
+                                String sum = sta.sumofNet();
+                                totalNetSales.setText("Total Net Sales: " + sum);
+                                pd.cancel();
+                                ShowGraph.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent i = new Intent(SalesSummaryActivity.this, SalesSummaryChart.class);
+                                        i.putExtra("netsales", s);
+
+                                        startActivity(i);
+
+                                    }
+                                });
+
+
+                            }
+                        }catch (Exception e){
+                            Toast.makeText(SalesSummaryActivity.this, "Could not fetch data, please try again", Toast.LENGTH_SHORT).show();
                             pd.cancel();
-                            ShowGraph.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent i = new Intent(SalesSummaryActivity.this,SalesSummaryChart.class);
-                                    i.putExtra("netsales",s);
-                                    i.putExtra("netpurchases",p);
-                                    startActivity(i);
-                                }
-                            });
-
-
                         }
 
                     }

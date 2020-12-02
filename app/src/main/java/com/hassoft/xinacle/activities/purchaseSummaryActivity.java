@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -58,24 +59,28 @@ Button btnViewChart;
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        try {
+                            PurchaseMaster[] sa = new Gson().fromJson(String.valueOf(s), PurchaseMaster[].class);
+                            if (sa != null) {
+                                purchaseSummaryAdapter psa = new purchaseSummaryAdapter(purchaseSummaryActivity.this, sa);
+                                salesTransactionList.setAdapter(psa);
+                                String sum = psa.sumofNet();
+                                totalNetSales.setText("Total Net Purchases: " + sum);
+                                pd.cancel();
+                                btnViewChart.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent i = new Intent(purchaseSummaryActivity.this, PurchaseSummaryChart.class);
+                                        i.putExtra("netpurchases", s);
+                                        startActivity(i);
+                                    }
+                                });
 
-                        PurchaseMaster[] sa = new Gson().fromJson(String.valueOf(s), PurchaseMaster[].class);
-                        if(sa!=null) {
-                            purchaseSummaryAdapter psa = new purchaseSummaryAdapter(purchaseSummaryActivity.this, sa);
-                            salesTransactionList.setAdapter(psa);
-                            String sum=psa.sumofNet();
-                            totalNetSales.setText("Total Net Purchases: "+ sum);
+
+                            }
+                        }catch (Exception e){
+                            Toast.makeText(purchaseSummaryActivity.this, "Could not fetch data, please try again", Toast.LENGTH_SHORT).show();
                             pd.cancel();
-                            btnViewChart.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent i = new Intent(purchaseSummaryActivity.this,PurchaseSummaryChart.class);
-                                    i.putExtra("netpurchases",s);
-                                    startActivity(i);
-                                }
-                            });
-
-
                         }
 
                     }

@@ -1,9 +1,11 @@
 package com.hassoft.xinacle.activities;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,6 +35,9 @@ Button ShowChart;
         totalNetSales=(TextView)findViewById(R.id.TotalNetAmount);
         fromdate.setText("From: "+getIntent().getStringExtra("FromDate"));
         todate.setText("To: "+getIntent().getStringExtra("ToDate"));
+        ProgressDialog pd =new ProgressDialog(SalesTransactionActivity.this);
+        pd.setTitle("Please wait");
+        pd.show();
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -41,18 +46,25 @@ Button ShowChart;
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        try {
 
-                        SalesTransaction[] sa = new Gson().fromJson(String.valueOf(s),SalesTransaction[].class);
-                        if(sa!=null) {
-                            salesTransactionAdapter sta = new salesTransactionAdapter(SalesTransactionActivity.this, sa);
-                            salesTransactionList.setAdapter(sta);
-                            String sum=sta.sumofNet();
-                            totalNetSales.setText("Total Net Sales: "+ sum);
+                            SalesTransaction[] sa = new Gson().fromJson(String.valueOf(s), SalesTransaction[].class);
+                            if (sa != null) {
+                                salesTransactionAdapter sta = new salesTransactionAdapter(SalesTransactionActivity.this, sa);
+                                salesTransactionList.setAdapter(sta);
+                                String sum = sta.sumofNet();
+                                totalNetSales.setText("Total Net Sales: " + sum);
+                                pd.cancel();
 
+
+                            }
+                        }catch (Exception e){
+                            Toast.makeText(SalesTransactionActivity.this, "Could not fetch data, please try again", Toast.LENGTH_SHORT).show();
+                            pd.cancel();
 
                         }
-
                     }
+
                 });
             }
         }).start();

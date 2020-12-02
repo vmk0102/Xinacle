@@ -56,12 +56,12 @@ public class FilterPurchaseMasterActivity extends AppCompatActivity {
         final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar c = Calendar.getInstance();
 
-        toDate.setText(sdf.format(c.getTime()));
+      //  toDate.setText(sdf.format(c.getTime()));
         Calendar fd=Calendar.getInstance();
         fd.set(Calendar.MONTH,c.getTime().getMonth());
         fd.set(Calendar.DAY_OF_MONTH,1);
         fd.set(Calendar.YEAR,c.getTime().getYear()+1900);
-        fromDate.setText(sdf.format(fd.getTime()));
+      //  fromDate.setText(sdf.format(fd.getTime()));
 
         globalFromDate=sdf.format(fd.getTime());
         globalToDate=sdf.format(c.getTime());
@@ -169,7 +169,7 @@ public class FilterPurchaseMasterActivity extends AppCompatActivity {
                 }
 
                 startActivity(i);
-                finish();
+
 
             }
         });

@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -42,23 +43,29 @@ TextView totalNetSales;
         new Thread(new Runnable() {
             @Override
             public void run() {
+
                 final String s = new GetPurchaseTransaction().getData(purchaseTransactionActivity.this,getIntent().getStringExtra("FromDate"),getIntent().getStringExtra("ToDate"),getIntent().getStringExtra("SupplierID"),getIntent().getStringExtra("ProductID"),"1");
 
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        try {
 
-                        PurchaseTransaction[] sa = new Gson().fromJson(String.valueOf(s), PurchaseTransaction[].class);
-                        if(sa!=null) {
-                            purchaseTransactionAdapter pta = new purchaseTransactionAdapter(purchaseTransactionActivity.this, sa);
-                            salesTransactionList.setAdapter(pta);
-                            String sum=pta.sumofNet();
-                            totalNetSales.setText("Total Net Purchases: "+ sum);
+                            PurchaseTransaction[] sa = new Gson().fromJson(String.valueOf(s), PurchaseTransaction[].class);
+                            if (sa != null) {
+                                purchaseTransactionAdapter pta = new purchaseTransactionAdapter(purchaseTransactionActivity.this, sa);
+                                salesTransactionList.setAdapter(pta);
+                                String sum = pta.sumofNet();
+                                totalNetSales.setText("Total Net Purchases: " + sum);
+                                pd.cancel();
+
+
+                            }
+
+                        }catch (Exception e){
+                            Toast.makeText(purchaseTransactionActivity.this, "Could not fetch data, please try again", Toast.LENGTH_SHORT).show();
                             pd.cancel();
-
-
                         }
-
                     }
                 });
             }

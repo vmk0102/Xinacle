@@ -13,12 +13,13 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
-public class GetDailySales {
-    public String getData(Context context, String fromDate, String toDate, int CompanyBranchID) {
+public class GetProductLedger {
+
+    public String GetData(Context context, String FromDate, String ToDate, String ProductID, String CompanyBranchID, String WarehouseID){
         if(GlobalFunctions.isInternetAvailable(context)) {
             try {
 
-                String getUrl = context.getResources().getString(R.string.apilinkprefix) + "Sales/GetDailySales?FromDate=&ToDate=&CompanyBranchID=" + CompanyBranchID;//https://www.pakistanscrabble.org/api.php";
+                String getUrl = context.getResources().getString(R.string.apilinkprefix) + "Inventory/GetProductLedger?FromDate=" + FromDate + "&ToDate=" + ToDate + "&ProductID=" + ProductID + "&CompanyBranchID=" + CompanyBranchID + "&WarehouseID=" + WarehouseID;//https://www.pakistanscrabble.org/api.php";
                 Log.v("SOMEONE ONCE SAID", "postURL: " + getUrl);
 
                 HttpClient httpClient = new DefaultHttpClient();
@@ -49,5 +50,6 @@ public class GetDailySales {
         }else {
             return null;
         }
+
     }
 }

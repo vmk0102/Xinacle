@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.hassoft.xinacle.R;
 
@@ -27,7 +28,8 @@ public class InventoryActivity extends Activity {
         productLedger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(InventoryActivity.this,ProductLedger.class));
+                //Toast.makeText(InventoryActivity.this, "Under Development", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(InventoryActivity.this,FilterProductLedgerActivity.class));
             }
         });
 
