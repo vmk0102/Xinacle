@@ -48,7 +48,7 @@
 
                 android:layout_marginLeft="10dp"
                 android:textColor="@color/white"
-                android:text="From: "
+                android:text=""
 
 
                 />
@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
                 android:textColor="@color/white"
-                android:text="To: "
+                android:text=""
 
                 />
 

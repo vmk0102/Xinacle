@@ -16,6 +16,7 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.google.gson.Gson;
 import com.hassoft.xinacle.R;
+import com.hassoft.xinacle.apis.GetDailyPurchases;
 import com.hassoft.xinacle.apis.GetDailySales;
 import com.hassoft.xinacle.model.DailySales;
 
@@ -40,7 +41,7 @@ public class DailyPurchasesChart extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-              String  ds=new GetDailySales().getData(DailyPurchasesChart.this,getIntent().getStringExtra("FromDate"),getIntent().getStringExtra("ToDate"),1);
+              String  ds=new GetDailyPurchases().getData(DailyPurchasesChart.this,getIntent().getStringExtra("FromDate"),getIntent().getStringExtra("ToDate"),1);
               runOnUiThread(new Runnable() {
                   @Override
                   public void run() {

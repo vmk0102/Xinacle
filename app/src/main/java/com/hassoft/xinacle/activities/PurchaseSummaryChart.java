@@ -1,5 +1,7 @@
 package com.hassoft.xinacle.activities;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.DataSet;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -38,18 +41,21 @@ public class PurchaseSummaryChart extends AppCompatActivity {
 
 
         ArrayList<ILineDataSet> set1=new ArrayList<>();
-        LineDataSet dataset1 = new LineDataSet(dataSet1(),"Sales Summary");
-        prepareData(dataset1,Color.BLUE);
-        ArrayList<String> dates= new ArrayList<>();
-        fillData(dates);
+        ArrayList<Entry> ds = dataSet1();
+        if (ds!=null) {
+            LineDataSet dataset1 = new LineDataSet(dataSet1(), "Sales Summary");
+            prepareData(dataset1, Color.BLUE);
+            ArrayList<String> dates = new ArrayList<>();
+            fillData(dates);
 
-        XAxis xAxis = mChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setGranularity(1f); // minimum axis-step (interval) is 1
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(dates));
-        set1.add(dataset1);
-        LineData fulldataset= new LineData(set1);
-        mChart.setData(fulldataset);
+            XAxis xAxis = mChart.getXAxis();
+            xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+            xAxis.setGranularity(1f); // minimum axis-step (interval) is 1
+            xAxis.setValueFormatter(new IndexAxisValueFormatter(dates));
+            set1.add(dataset1);
+            LineData fulldataset = new LineData(set1);
+            mChart.setData(fulldataset);
+        }
 
     }
 
@@ -60,15 +66,20 @@ public class PurchaseSummaryChart extends AppCompatActivity {
         }
     }
     public ArrayList<Entry> dataSet1(){
+        SharedPreferences pf = getApplicationContext().getSharedPreferences("mypref", Context.MODE_PRIVATE);
+        String s = pf.getString("PurchaseSummaryData",null);
+        if(s!=null) {
 
-        pa = new Gson().fromJson(String.valueOf(getIntent().getStringExtra("netpurchases")), PurchaseMaster[].class);
-        ArrayList<Entry> values = new ArrayList<>();
-        int i =0;
-        for(PurchaseMaster p : pa){
-            values.add(new Entry(i, Float.parseFloat(String.valueOf(p.getNetAmount()))));
-            i++;
+            pa = new Gson().fromJson(s, PurchaseMaster[].class);
+            ArrayList<Entry> values = new ArrayList<>();
+            int i = 0;
+            for (PurchaseMaster p : pa) {
+                values.add(new Entry(i, Float.parseFloat(String.valueOf(p.getNetAmount()))));
+                i++;
+            }
+            return values;
         }
-        return values;
+        return null;
 
     }
 

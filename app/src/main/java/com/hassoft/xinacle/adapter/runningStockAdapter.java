@@ -13,13 +13,14 @@ import com.hassoft.xinacle.model.RunningStock;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 
 public class runningStockAdapter extends BaseAdapter {
     Context context;
-    RunningStock[] runningStocks =null;
+    ArrayList<RunningStock> runningStocks =null;
 
-    public runningStockAdapter(Context context, RunningStock[] runningStocks){
+    public runningStockAdapter(Context context, ArrayList<RunningStock> runningStocks){
         this.context=context;
         this.runningStocks=runningStocks;
 
@@ -29,12 +30,12 @@ public class runningStockAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int i) {
-        return runningStocks[i];
+        return runningStocks.get(i);
     }
 
     @Override
     public int getCount() {
-        return runningStocks.length;
+        return runningStocks.size();
     }
 
     @Override

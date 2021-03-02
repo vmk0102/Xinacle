@@ -120,8 +120,8 @@ public class FilterSalesMasterActivity extends AppCompatActivity {
                             ArrayList<Customers> withNullCustomer = new ArrayList<>(Arrays.asList(customers));
                             Customers nullvaluecustomer= new Customers();
                             nullvaluecustomer.setCustomerID(0);
-                            nullvaluecustomer.setCustomerName("ALL");
-                            withNullCustomer.add(nullvaluecustomer);
+                            nullvaluecustomer.setCustomerName("All");
+                            withNullCustomer.add(0,nullvaluecustomer);
 
                             customerAdapter ca = new customerAdapter(FilterSalesMasterActivity.this,withNullCustomer);
                             CustomerSpinner.setAdapter(ca);
@@ -143,8 +143,8 @@ public class FilterSalesMasterActivity extends AppCompatActivity {
                             Salesman nullsaleman=new Salesman();
 
                             nullsaleman.setSalesmanID(0);
-                            nullsaleman.setSalesmanName("ALL");
-                            withNullSaleman.add(nullsaleman);
+                            nullsaleman.setSalesmanName("All");
+                            withNullSaleman.add(0,nullsaleman);
                             salesmanAdapter sma = new salesmanAdapter(FilterSalesMasterActivity.this,withNullSaleman);
 
 

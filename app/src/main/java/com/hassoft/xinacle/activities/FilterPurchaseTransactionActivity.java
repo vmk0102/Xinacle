@@ -120,8 +120,8 @@ public class FilterPurchaseTransactionActivity extends AppCompatActivity {
                             ArrayList<Supplier> withNullSupplier = new ArrayList<>(Arrays.asList(suppliers));
                             Supplier nullvaluesupplier= new Supplier();
                             nullvaluesupplier.setSupplierID(0);
-                            nullvaluesupplier.setSupplierName("ALL");
-                            withNullSupplier.add(nullvaluesupplier);
+                            nullvaluesupplier.setSupplierName("All");
+                            withNullSupplier.add(0,nullvaluesupplier);
 
                             suppliersAdapter sa = new suppliersAdapter(FilterPurchaseTransactionActivity.this,withNullSupplier);
                             SupplierrSpinner.setAdapter(sa);
@@ -143,7 +143,7 @@ public class FilterPurchaseTransactionActivity extends AppCompatActivity {
 
                             nullproduct.setProductID(0);;
                             nullproduct.setProductName("ALL");
-                            withNullProduct.add(nullproduct);
+                            withNullProduct.add(0,nullproduct);
                             productsAdapter pma = new productsAdapter(FilterPurchaseTransactionActivity.this,withNullProduct);
 
 

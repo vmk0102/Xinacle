@@ -83,7 +83,7 @@
                 android:layout_marginTop="5dp"
                 app:RevealEmptyText="Touch to select"
                 app:SearchHintText="Search Supplier"
-                app:NoItemsFoundText="No saleman found"
+                app:NoItemsFoundText="No Supplier found"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_width="match_parent"

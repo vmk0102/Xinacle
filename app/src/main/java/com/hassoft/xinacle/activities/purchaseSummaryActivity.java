@@ -1,7 +1,9 @@
 package com.hassoft.xinacle.activities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -55,7 +57,8 @@ Button btnViewChart;
             @Override
             public void run() {
                 final String s = new GetPurchaseSummary().getData(purchaseSummaryActivity.this,getIntent().getStringExtra("FromDate"),getIntent().getStringExtra("ToDate"),getIntent().getStringExtra("SupplierID"),"1");
-
+                SharedPreferences sf = getSharedPreferences("mypref", Context.MODE_PRIVATE);
+                sf.edit().putString("PurchaseSummaryData",s).apply();
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -71,7 +74,6 @@ Button btnViewChart;
                                     @Override
                                     public void onClick(View v) {
                                         Intent i = new Intent(purchaseSummaryActivity.this, PurchaseSummaryChart.class);
-                                        i.putExtra("netpurchases", s);
                                         startActivity(i);
                                     }
                                 });

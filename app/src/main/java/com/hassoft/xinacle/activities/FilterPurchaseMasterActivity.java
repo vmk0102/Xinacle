@@ -119,8 +119,8 @@ public class FilterPurchaseMasterActivity extends AppCompatActivity {
                             ArrayList<Supplier> withNullSupplier = new ArrayList<>(Arrays.asList(suppliers));
                             Supplier nullvalueSupplier= new Supplier();
                             nullvalueSupplier.setSupplierID(0);
-                            nullvalueSupplier.setSupplierName("ALL");
-                            withNullSupplier.add(nullvalueSupplier);
+                            nullvalueSupplier.setSupplierName("All");
+                            withNullSupplier.add(0,nullvalueSupplier);
 
                             suppliersAdapter sa  = new suppliersAdapter(FilterPurchaseMasterActivity.this,withNullSupplier);
                             SupplierSpinner.setAdapter(sa);

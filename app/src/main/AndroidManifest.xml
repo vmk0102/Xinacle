@@ -101,6 +101,10 @@
         <activity
             android:name=".activities.FilterProductLedgerActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.FilterRunningStockActivity"
+            android:screenOrientation="portrait" />
+
 
 
 

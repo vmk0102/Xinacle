@@ -8,6 +8,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.common.base.Predicates;
+import com.google.common.collect.Collections2;
+import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 import com.hassoft.xinacle.R;
 import com.hassoft.xinacle.adapter.purchaseTransactionAdapter;
@@ -16,6 +19,11 @@ import com.hassoft.xinacle.apis.GetPurchaseTransaction;
 import com.hassoft.xinacle.apis.GetRunningStock;
 import com.hassoft.xinacle.model.PurchaseTransaction;
 import com.hassoft.xinacle.model.RunningStock;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 
 public class RunningStockActivity extends AppCompatActivity {
@@ -50,8 +58,11 @@ ListView runningStockList;
                         try {
 
                             RunningStock[] ra = new Gson().fromJson(String.valueOf(s), RunningStock[].class);
+                            List<RunningStock> temp = Arrays.asList(ra);
+                            ArrayList<RunningStock> ras= Lists.newArrayList(Collections2.filter(temp,new RunningStockFilter(getIntent().getStringExtra("ProductNameRunningStock"))));
+
                             if (ra != null) {
-                                runningStockAdapter pta = new runningStockAdapter(RunningStockActivity.this, ra);
+                                runningStockAdapter pta = new runningStockAdapter(RunningStockActivity.this, ras);
                                 runningStockList.setAdapter(pta);
                                 //String sum=pta.sumofNet();
                                 //totalNetSales.setText("Total Net Purchases: "+ sum);

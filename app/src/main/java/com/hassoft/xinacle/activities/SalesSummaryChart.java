@@ -1,5 +1,7 @@
 package com.hassoft.xinacle.activities;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.os.Bundle;
@@ -39,33 +41,39 @@ public class SalesSummaryChart extends AppCompatActivity {
 
 
         ArrayList<ILineDataSet> set1=new ArrayList<>();
-        LineDataSet dataset1 = new LineDataSet(dataSet1(),"Sales Summary");
-        prepareData(dataset1,Color.BLUE);
-        ArrayList<String> dates= new ArrayList<>();
-        fillData(dates);
+        ArrayList<Entry> ds = dataSet1();
+        if(ds!=null) {
+            LineDataSet dataset1 = new LineDataSet(ds, "Sales Summary");
+            prepareData(dataset1, Color.BLUE);
+            ArrayList<String> dates = new ArrayList<>();
+            fillData(dates);
 
-        XAxis xAxis = mChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setGranularity(1f); // minimum axis-step (interval) is 1
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(dates));
-        set1.add(dataset1);
-        LineData fulldataset= new LineData(set1);
-        mChart.setData(fulldataset);
-
+            XAxis xAxis = mChart.getXAxis();
+            xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+            xAxis.setGranularity(1f); // minimum axis-step (interval) is 1
+            xAxis.setValueFormatter(new IndexAxisValueFormatter(dates));
+            set1.add(dataset1);
+            LineData fulldataset = new LineData(set1);
+            mChart.setData(fulldataset);
+        }
     }
 
     public ArrayList<Entry> dataSet1(){
+        SharedPreferences sf = getApplicationContext().getSharedPreferences("mypref", Context.MODE_PRIVATE);
+        String st = sf.getString("SalesSummaryData",null);
+                if(st!=null) {
+                    sa = new Gson().fromJson(st, SalesSummary[].class);
+                    ArrayList<Entry> values = new ArrayList<>();
+                    int i = 0;
+                    for (SalesSummary s : sa) {
 
-        sa = new Gson().fromJson(String.valueOf(getIntent().getStringExtra("netsales")), SalesSummary[].class);
-        ArrayList<Entry> values = new ArrayList<>();
-        int i =0;
-        for(SalesSummary s : sa){
+                        values.add(new Entry(i, Float.parseFloat(String.valueOf(s.getNetAmount()))));
+                        i++;
 
-            values.add(new Entry(i, Float.parseFloat(String.valueOf(s.getNetAmount()))));
-            i++;
-
-        }
-        return values;
+                    }
+                    return values;
+                }
+                return null;
 
     }
     public void fillData(ArrayList<String> dates){
@@ -74,7 +82,6 @@ public class SalesSummaryChart extends AppCompatActivity {
         }
     }
     public ArrayList<Entry> dataSet2(){
-
         pa = new Gson().fromJson(String.valueOf(getIntent().getStringExtra("netpurchases")), PurchaseMaster[].class);
         ArrayList<Entry> values = new ArrayList<>();
         int i =1;

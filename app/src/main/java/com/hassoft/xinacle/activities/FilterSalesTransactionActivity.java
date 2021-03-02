@@ -119,8 +119,8 @@ public class FilterSalesTransactionActivity extends AppCompatActivity {
                             ArrayList<Customers> withNullCustomer = new ArrayList<>(Arrays.asList(customers));
                             Customers nullvaluecustomer= new Customers();
                             nullvaluecustomer.setCustomerID(0);
-                            nullvaluecustomer.setCustomerName("ALL");
-                            withNullCustomer.add(nullvaluecustomer);
+                            nullvaluecustomer.setCustomerName("All");
+                            withNullCustomer.add(0,nullvaluecustomer);
 
                             customerAdapter ca = new customerAdapter(FilterSalesTransactionActivity.this,withNullCustomer);
                             CustomerSpinner.setAdapter(ca);
@@ -141,8 +141,8 @@ public class FilterSalesTransactionActivity extends AppCompatActivity {
                             Products nullproduct=new Products();
 
                             nullproduct.setProductID(0);;
-                            nullproduct.setProductName("ALL");
-                            withNullProduct.add(nullproduct);
+                            nullproduct.setProductName("All");
+                            withNullProduct.add(0,nullproduct);
                             productsAdapter pma = new productsAdapter(FilterSalesTransactionActivity.this,withNullProduct);
 
 

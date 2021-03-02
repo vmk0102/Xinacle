@@ -22,7 +22,7 @@ public class InventoryActivity extends Activity {
         runningStock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(InventoryActivity.this,RunningStockActivity.class));
+                startActivity(new Intent(InventoryActivity.this,FilterRunningStockActivity.class));
             }
         });
         productLedger.setOnClickListener(new View.OnClickListener() {

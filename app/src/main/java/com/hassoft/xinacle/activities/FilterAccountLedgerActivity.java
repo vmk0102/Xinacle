@@ -110,11 +110,13 @@ public class FilterAccountLedgerActivity extends AppCompatActivity {
                         public void run() {
                             Gson gson= new Gson();
                             Accounts[] accounts=gson.fromJson(s,Accounts[].class);
-                            ArrayList<Accounts> withNullAccounts = new ArrayList<>(Arrays.asList(accounts));
                             Accounts nullvalueAccounts= new Accounts();
                             nullvalueAccounts.setAccountCode("0");
-                            nullvalueAccounts.setAccountTitle("ALL");
-                            withNullAccounts.add(nullvalueAccounts);
+                            nullvalueAccounts.setAccountTitle("All");
+
+
+                            ArrayList<Accounts> withNullAccounts = new ArrayList<>(Arrays.asList(accounts));
+                            withNullAccounts.add(0,nullvalueAccounts);
 
                             accountsAdapter aa  = new accountsAdapter(FilterAccountLedgerActivity.this,withNullAccounts);
                             AccountsSpinner.setAdapter(aa);
